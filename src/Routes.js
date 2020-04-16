@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import SideBarContainer from './containers/SideBarContainer';
 import NotFound from './routes/NotFoundPage';
 import LoginPage from './routes/LoginPage';
+import Welcome from './routes/Welcome';
 
 const fakeAuth = {
   isAuthenticated: false,
@@ -45,6 +46,7 @@ export default ({ data }) => {
       </Route>
       <PrivateRoute path="/content" component={SideBarContainer} isAuthenticated={data.isAuthenticated} />
       <Route path="/login" component={LoginPage} />
+      <Route path="/welcome" component={Welcome} />
       <Route path="*" component={NotFound} />
     </Switch>
   );

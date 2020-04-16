@@ -1,8 +1,11 @@
 import React from 'react';
 
-import './styles.scss';
+import { withRouter } from 'react-router-dom';
+
 import validator from 'email-validator';
 import TextInput from '../../components/TextInput';
+
+import './styles.scss';
 
 class LoginPage extends React.Component {
   state = {};
@@ -22,11 +25,11 @@ class LoginPage extends React.Component {
       errorText: null,
     });
 
-    this.props.login(email);
+    // @todo dispatch action
   };
 
   cancelLogin = () => {
-    console.log('cancel login');
+    this.props.history.push('/welcome');
   };
 
   render() {
@@ -43,7 +46,7 @@ class LoginPage extends React.Component {
         />
 
         <div className="actionContainer">
-          <div className="button" onClick={this.props.cancelLogin}>
+          <div className="button" onClick={this.cancelLogin}>
             cancel
           </div>
           <div className="button" onClick={this.login}>
@@ -55,4 +58,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
