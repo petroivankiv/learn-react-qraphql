@@ -7,7 +7,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
@@ -20,11 +20,11 @@ module.exports = {
     'react/prop-types': ['off'],
     'react/display-name': ['off'],
     'react/no-unescaped-entities': ['off'],
-    indent: ['error', 2, {SwitchCase: 1}],
+    indent: ['error', 2, { SwitchCase: 1 }],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'no-console': ['warn', {allow: ['clear', 'info', 'error', 'dir', 'trace']}],
+    'no-console': ['warn', { allow: ['clear', 'info', 'error', 'dir', 'trace'] }],
     curly: 'error',
     'no-else-return': 'error',
     'no-unneeded-ternary': 'error',
@@ -34,6 +34,6 @@ module.exports = {
     'prefer-arrow-callback': 'error',
     strict: 'error',
     'symbol-description': 'error',
-    yoda: ['error', 'never', {exceptRange: true}],
+    yoda: ['error', 'never', { exceptRange: true }],
   },
 };

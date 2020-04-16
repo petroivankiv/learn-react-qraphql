@@ -1,8 +1,11 @@
 import express from 'express';
+import compression from 'compression';
 import path from 'path';
 import config from './config';
 
 const app = express();
+
+app.use(compression());
 
 app.use(express.static(path.join(__dirname, '../build')));
 
