@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css';
+import './styles.scss';
 import classNames from 'classnames';
 
 class TextInput extends React.Component {
@@ -11,12 +11,12 @@ class TextInput extends React.Component {
 
   render() {
     const { errorText } = this.props;
-    const fieldError = errorText ? <div className={styles.errorMessage}>{errorText}</div> : null;
+    const fieldError = errorText ? <div className="errorMessage">{errorText}</div> : null;
 
     return (
       <div>
         <input
-          className={classNames(styles.input, this.props.className, { [styles.inputError]: errorText })}
+          className={classNames('input', this.props.className, { inputError: errorText })}
           placeholder={this.props.placeholder}
           ref={(f) => {
             this.field = f;

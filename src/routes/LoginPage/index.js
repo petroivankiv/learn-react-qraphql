@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles.css';
+import './styles.scss';
 import validator from 'email-validator';
 import TextInput from '../../components/TextInput';
 
@@ -31,8 +31,8 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div className={styles.login}>
-        <div className={styles.heading}>Login with your email</div>
+      <div className="login">
+        <div className="heading">Login with your email</div>
 
         <TextInput
           placeholder="Your email"
@@ -42,11 +42,11 @@ class LoginPage extends React.Component {
           errorText={this.state.errorText}
         />
 
-        <div className={styles.actionContainer}>
-          <div className={styles.button} onClick={this.props.cancelLogin}>
+        <div className="actionContainer">
+          <div className="button" onClick={this.props.cancelLogin}>
             cancel
           </div>
-          <div className={styles.button} onClick={this.login}>
+          <div className="button" onClick={this.login}>
             log in
           </div>
         </div>
