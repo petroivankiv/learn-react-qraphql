@@ -13,7 +13,6 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "express": "^4.17.1",
     "nodemon": "^2.0.3",
     "pm2": "^4.2.3",
@@ -46,5 +45,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
+    "enzyme-adapter-react-16": "^1.15.2"
   }
 }
