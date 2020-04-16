@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import config from './config';
 
 const app = express();
 
@@ -9,6 +10,6 @@ app.get('/', async (req, res) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
-app.listen(3001, () => {
-  console.info(`Running on ${3001}`);
+app.listen(config.port, () => {
+  console.info(`Running on ${config.port}`);
 });
