@@ -20,7 +20,7 @@ const styles = {
 export default function Welcome() {
   return (
     <div style={styles.container}>
-      <img style={styles.image} src={welcome}></img>
+      <img style={styles.image} src={welcome} alt=""></img>
       <h3>
         To see content please <Link to="/login">log In</Link>
       </h3>

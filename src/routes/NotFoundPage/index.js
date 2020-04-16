@@ -17,7 +17,7 @@ function NotFound() {
 
   return (
     <div style={styles.container}>
-      <img src={notfound}></img>
+      <img src={notfound} alt=""></img>
       <h3>
         No match for <code>{location.pathname}</code>
       </h3>

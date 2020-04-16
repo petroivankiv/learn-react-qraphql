@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import { withRouter } from 'react-router-dom';
+import { login, cancelLogin } from './actions';
 
 import validator from 'email-validator';
 import TextInput from '../../components/TextInput';
@@ -25,11 +26,11 @@ class LoginPage extends React.Component {
       errorText: null,
     });
 
-    // @todo dispatch action
+    this.props.login(email);
   };
 
   cancelLogin = () => {
-    this.props.history.push('/welcome');
+    this.props.cancelLogin();
   };
 
   render() {
@@ -58,4 +59,17 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withRouter(LoginPage);
+const mapStateToProps = function (state) {
+  return {
+    articles: state.loginReducer.email,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    login: (email) => dispatch(login(email)),
+    cancelLogin: () => dispatch(cancelLogin()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
