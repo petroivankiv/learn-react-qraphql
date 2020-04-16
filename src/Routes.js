@@ -40,17 +40,9 @@ export const PrivateRoute = ({ component: Component, isAuthenticated, path, ...r
 export default ({ data }) => {
   return (
     <Switch>
-      <Route
-        path="/"
-        exact
-        render={() => (
-          <Redirect
-            to={{
-              pathname: '/content',
-            }}
-          />
-        )}
-      />
+      <Route exact path="/">
+        <Redirect to="/content" />
+      </Route>
       <PrivateRoute path="/content" component={SideBarContainer} isAuthenticated={data.isAuthenticated} />
       <Route path="/login" component={LoginPage} />
       <Route path="*" component={NotFound} />
