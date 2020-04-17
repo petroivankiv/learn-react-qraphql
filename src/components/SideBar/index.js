@@ -13,8 +13,8 @@ class SideBar extends React.Component {
     this.props.history.push('/content/home');
   };
 
-  goToMedicine = () => {
-    this.props.history.push('/content/medicines');
+  goTotopics = () => {
+    this.props.history.push('/content/topics');
   };
 
   render() {
@@ -37,7 +37,7 @@ class SideBar extends React.Component {
             <ListItemIcon>
               <DraftsIcon />
             </ListItemIcon>
-            <ListItemText primary="Medicines" onClick={this.goToMedicine} />
+            <ListItemText primary="Topics" onClick={this.goTotopics} />
           </ListItem>
         </List>
       </div>

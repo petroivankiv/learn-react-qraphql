@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { LOGIN, LOGOUT } from './constants';
 
 const initialState = fromJS({
-  email: null,
+  email: 'email@domain.ua',
 });
 
 function loginReducer(state = initialState, action) {
