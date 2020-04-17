@@ -7,7 +7,7 @@ import config from './config';
 import { setUpDb } from './database';
 
 import loginRouter from './auth/router';
-import topicsRouter from './topics/router';
+import graphQlRouter from './qraphql/router';
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.use('/api/auth', loginRouter);
-app.use('/api/topics', topicsRouter);
+app.use('/api/qraphql', graphQlRouter);
 
 app.get('/', async (req, res) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));

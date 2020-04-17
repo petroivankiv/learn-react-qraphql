@@ -27,8 +27,10 @@ topicSchema.statics = {
     return this.findByIdAndUpdate(id, { $set: topic }, { new: true }).exec();
   },
 
-  remove(id) {
-    return this.findById(id).remove().exec();
+  remove({ id }) {
+    return this.deleteOne({ _id: id })
+      .exec()
+      .then(() => id);
   },
 };
 
