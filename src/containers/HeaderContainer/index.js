@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,6 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+
+import { logout } from '../../routes/LoginPage/actions';
+import selectLogin from '../../routes/LoginPage/selectors';
 
 const styles = () => ({
   root: {
@@ -23,16 +27,16 @@ const styles = () => ({
 });
 
 class Header extends Component {
-  userHasAuthenticated = ({ isAuthenticated }) => {
-    this.setState({ isAuthenticated });
+  userHasAuthenticated = ({ isLoggedIn }) => {
+    this.setState({ isLoggedIn });
   };
 
   handleLogout = () => {
-    this.props.onLogout();
+    this.props.doLogout();
   };
 
   render() {
-    const { classes, isAuthenticated } = this.props;
+    const { classes, email } = this.props;
 
     return (
       <AppBar position="static">
@@ -41,15 +45,13 @@ class Header extends Component {
             <AccountCircle />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Welcome, Nonames
+            Welcome, {email ? email : 'Noname'}
           </Typography>
 
-          {isAuthenticated ? (
-            <LinkContainer to="/login">
-              <Button color="inherit" onClick={this.handleLogout}>
-                Logout
-              </Button>
-            </LinkContainer>
+          {email ? (
+            <Button color="inherit" onClick={this.handleLogout}>
+              Logout
+            </Button>
           ) : (
             <LinkContainer to="/login">
               <Button color="inherit">Login</Button>
@@ -63,8 +65,16 @@ class Header extends Component {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  onLogout: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Header);
+const mapStateToProps = selectLogin;
+
+function mapDispatchToProps(dispatch) {
+  return {
+    doLogout: () => dispatch(logout()),
+  };
+}
+
+const HeaderWithStyles = withStyles(styles)(Header);
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderWithStyles);

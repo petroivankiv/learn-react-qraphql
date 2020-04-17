@@ -1,14 +1,16 @@
 import { fromJS } from 'immutable';
-import { LOGIN } from './constants';
+import { LOGIN, LOGOUT } from './constants';
 
 const initialState = fromJS({
-  isLoggedIn: false,
+  email: null,
 });
 
 function loginReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      return state.set('email', action.email).set('isLoggedIn', true);
+      return state.set('email', action.email);
+    case LOGOUT:
+      return state.set('email', null);
     default:
       return state;
   }
