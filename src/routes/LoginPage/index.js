@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { login, cancelLogin } from './actions';
+import selectLogin from './selectors';
 
 import validator from 'email-validator';
 import TextInput from '../../components/TextInput';
@@ -26,7 +27,7 @@ class LoginPage extends React.Component {
       errorText: null,
     });
 
-    this.props.login(email);
+    this.props.doLogin(email);
   };
 
   cancelLogin = () => {
@@ -59,15 +60,11 @@ class LoginPage extends React.Component {
   }
 }
 
-const mapStateToProps = function (state) {
-  return {
-    articles: state.loginReducer.email,
-  };
-};
+const mapStateToProps = selectLogin;
 
 function mapDispatchToProps(dispatch) {
   return {
-    login: (email) => dispatch(login(email)),
+    doLogin: (email) => dispatch(login(email)),
     cancelLogin: () => dispatch(cancelLogin()),
   };
 }
