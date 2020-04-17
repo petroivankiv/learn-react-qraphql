@@ -1,11 +1,11 @@
 import { LOGIN, CANCEL_LOGIN } from './constants';
 import { put, all, takeEvery } from 'redux-saga/effects';
-import { goBack } from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 // Individual exports for testing
 
 function* handleDone() {
-  yield put(goBack());
+  yield put(push('/welcome'));
 }
 
 export function* doLoginSaga() {
