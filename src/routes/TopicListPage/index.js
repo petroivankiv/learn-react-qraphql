@@ -35,7 +35,7 @@ class TopicListPage extends React.Component {
         <div style={{ flex: 1, padding: '20px' }}>
           <Switch>
             <Route exact path={this.props.match.path}>
-              <TopicsTable />
+              <TopicsTable topics={this.props.topics} />
             </Route>
             <Route path={`${this.props.match.path}/add`}>
               <h3>Add.</h3>

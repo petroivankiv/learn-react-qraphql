@@ -6,7 +6,9 @@ export function create(topic) {
 }
 
 export function getAll() {
-  return axios.get(`${API_URL}/topics`);
+  return axios.get(`${API_URL}/topics`).then((data) => {
+    return data.data;
+  });
 }
 
 export function remove(id) {

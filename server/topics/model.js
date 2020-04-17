@@ -5,6 +5,7 @@ const topicSchema = new Schema(
   {
     name: { type: String, required: true },
     description: { type: String, required: false },
+    rate: { type: Number, required: false },
   },
   { timestamps: true }
 );

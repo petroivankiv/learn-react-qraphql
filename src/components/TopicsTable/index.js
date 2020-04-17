@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.info.main,
     color: theme.palette.common.white,
   },
   body: {
@@ -26,18 +26,9 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-function createData(name, description, rate) {
-  return { name, description, rate };
-}
-
-const rows = [
-  createData('NodeJs', 'Js platform for server', 10),
-  createData('React', 'Javascript framework', 10),
-  createData('QraphQl', 'Server comunication platform', 10),
-];
-
-export default function TopicsTable() {
+export default function TopicsTable({ topics }) {
   const classes = useStyles();
+
   const gotToDetails = () => {
     console.log('details');
   };
@@ -54,7 +45,7 @@ export default function TopicsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {topics.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
