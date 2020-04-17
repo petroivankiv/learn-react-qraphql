@@ -6,25 +6,13 @@ import NotFound from './routes/NotFoundPage';
 import LoginPage from './routes/LoginPage';
 import Welcome from './routes/Welcome';
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    fakeAuth.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    fakeAuth.isAuthenticated = false;
-    setTimeout(cb, 100);
-  },
-};
-
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
-export const PrivateRoute = ({ component: Component, isAuthenticated, path, ...rest }) => (
+export const PrivateRoute = ({ component: Component, isLoggedIn, path, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      isAuthenticated ? (
+      isLoggedIn ? (
         <Component {...props} />
       ) : (
         <Redirect
@@ -38,13 +26,13 @@ export const PrivateRoute = ({ component: Component, isAuthenticated, path, ...r
   />
 );
 
-export default ({ data }) => {
+export default ({ isLoggedIn }) => {
   return (
     <Switch>
       <Route exact path="/">
         <Redirect to="/content" />
       </Route>
-      <PrivateRoute path="/content" component={SideBarContainer} isAuthenticated={data.isAuthenticated} />
+      <PrivateRoute path="/content" component={SideBarContainer} isLoggedIn={isLoggedIn} />
       <Route path="/login" component={LoginPage} />
       <Route path="/welcome" component={Welcome} />
       <Route path="*" component={NotFound} />

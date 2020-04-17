@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Routes from '../../Routes';
+import selectLogin from '../../routes/LoginPage/selectors';
 
-export default class ContentContainer extends Component {
-  state = {
-    isAuthenticated: true,
-  };
-
-  handleLogout = () => {
-    console.log('Logout');
-  };
-
+class ContentContainer extends Component {
   render() {
-    return <Routes data={this.state} />;
+    const { email } = this.props;
+
+    return <Routes isLoggedIn={!!email} />;
   }
 }
+
+const mapStateToProps = selectLogin;
+
+export default connect(mapStateToProps, {})(ContentContainer);
