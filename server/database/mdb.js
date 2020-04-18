@@ -10,8 +10,10 @@ module.exports = (model) => {
       return topicModel.save().then((topic) => topic);
     },
 
-    remove(id) {
-      return model.remove(id).then((deleted) => deleted);
+    remove({ id }) {
+      return model.remove(id).then(() => {
+        return { id };
+      });
     },
   };
 };

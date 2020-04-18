@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, Switch, Route, useRouteMatch } from 'react-router-dom';
 
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_TOPICS } from './query';
+import { DELETE_TOPIC } from './mutation';
 
 import Button from '@material-ui/core/Button';
 
@@ -17,14 +18,26 @@ const styles = {
 };
 
 function TopicListPage() {
+  let topics = [];
+
+  const [deleteTopic] = useMutation(DELETE_TOPIC, { onCompleted });
   const { path, url } = useRouteMatch();
   const { data, loading, error } = useQuery(GET_TOPICS);
 
   if (loading) {
     return <p>Loading...</p>;
   }
+
   if (error) {
     return <p>Error</p>;
+  }
+
+  if (data) {
+    topics = data.topics;
+  }
+
+  function onCompleted(data) {
+    console.log('complete', data);
   }
 
   return (
@@ -39,7 +52,7 @@ function TopicListPage() {
       <div style={{ flex: 1, padding: '20px' }}>
         <Switch>
           <Route exact path={path}>
-            <TopicsTable topics={data.topics} />
+            <TopicsTable topics={topics} deleteTopic={deleteTopic} />
           </Route>
           <Route path={`${path}/add`}>
             <h3>Add.</h3>

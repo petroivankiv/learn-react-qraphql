@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles({
   table: {
@@ -26,7 +28,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-export default function TopicsTable({ topics }) {
+export default function TopicsTable({ topics, deleteTopic }) {
   const classes = useStyles();
 
   const gotToDetails = () => {
@@ -41,7 +43,7 @@ export default function TopicsTable({ topics }) {
             <StyledTableCell>Name</StyledTableCell>
             <StyledTableCell align="left">Description</StyledTableCell>
             <StyledTableCell align="right">Rate</StyledTableCell>
-            <StyledTableCell align="right">Details</StyledTableCell>
+            <StyledTableCell align="center">Actions</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -52,9 +54,20 @@ export default function TopicsTable({ topics }) {
               </TableCell>
               <TableCell align="left">{row.description}</TableCell>
               <TableCell align="right">{row.rate}</TableCell>
-              <TableCell align="right" onClick={gotToDetails} style={{ cursor: 'pointer' }}>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <TableCell align="center" style={{ cursor: 'pointer' }}>
+                <IconButton onClick={gotToDetails} className={classes.menuButton} color="inherit" aria-label="menu">
                   <ArrowForwardIosIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => deleteTopic({ variables: { id: row._id } })}
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="menu"
+                >
+                  <DeleteOutlineIcon />
+                </IconButton>
+                <IconButton className={classes.menuButton} color="inherit" aria-label="menu">
+                  <EditIcon />
                 </IconButton>
               </TableCell>
             </TableRow>
