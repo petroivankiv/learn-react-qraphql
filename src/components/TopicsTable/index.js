@@ -48,7 +48,7 @@ export default function TopicsTable({ topics, deleteTopic }) {
         </TableHead>
         <TableBody>
           {topics.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row._id}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>

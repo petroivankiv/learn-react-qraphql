@@ -1,4 +1,4 @@
-const { GraphQLInputObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } = require('graphql');
+import { GraphQLInputObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } from 'graphql';
 
 import TopicType from '../types/topic';
 

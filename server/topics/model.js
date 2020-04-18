@@ -28,9 +28,7 @@ topicSchema.statics = {
   },
 
   remove(id) {
-    return this.deleteOne({ _id: id })
-      .exec()
-      .then(() => id);
+    return this.deleteOne({ _id: id }).exec();
   },
 };
 

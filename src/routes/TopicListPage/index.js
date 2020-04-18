@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -18,8 +18,7 @@ const styles = {
 };
 
 function TopicListPage() {
-  let topics = [];
-
+  const [topics, setTopic] = useState([]);
   const [deleteTopic] = useMutation(DELETE_TOPIC, { onCompleted });
   const { path, url } = useRouteMatch();
   const { data, loading, error } = useQuery(GET_TOPICS);
@@ -33,11 +32,14 @@ function TopicListPage() {
   }
 
   if (data) {
-    topics = data.topics;
+    if (!topics.length) {
+      setTopic(data.topics);
+    }
   }
 
   function onCompleted(data) {
-    console.log('complete', data);
+    const arr = topics.filter((t) => t._id !== data.DeleteTopic.id);
+    setTopic(arr);
   }
 
   return (

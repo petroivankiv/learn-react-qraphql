@@ -1,12 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import graphqlHTTP from 'express-graphql';
 
 import Topic from '../topics/model';
 import mdb from '../database/mdb';
 
 const topicMdb = mdb(Topic);
 const ncSchema = require('./schema');
-const graphqlHTTP = require('express-graphql');
 
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));

@@ -1,6 +1,4 @@
-const { GraphQLInputObjectType, GraphQLString, GraphQLNonNull } = require('graphql');
-
-import TopicType from '../types/topic';
+import { GraphQLInputObjectType, GraphQLString, GraphQLNonNull, GraphQLObjectType } from 'graphql';
 
 const DeleteTopicInputType = new GraphQLInputObjectType({
   name: 'DeleteTopicInput',
@@ -10,8 +8,18 @@ const DeleteTopicInputType = new GraphQLInputObjectType({
   },
 });
 
+const DeleteResType = new GraphQLObjectType({
+  name: 'DeleteRes',
+
+  fields: () => {
+    return {
+      id: { type: GraphQLString },
+    };
+  },
+});
+
 module.exports = {
-  type: TopicType,
+  type: DeleteResType,
   args: {
     input: { type: new GraphQLNonNull(DeleteTopicInputType) },
   },
