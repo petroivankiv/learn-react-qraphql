@@ -8,7 +8,7 @@ function* handleDone() {
 }
 
 function* handleLogin(action) {
-  // yield call(login, action.email);
+  yield call(login, action.email);
   yield put(push('/welcome'));
 }
 
