@@ -1,10 +1,12 @@
-/*
- *
- * NavigationContainer actions
- *
- */
-
-import { REQUEST_TOPICS, REQUEST_TOPICS_SUCCEEDED, REQUEST_TOPICS_FAILED, SELECT_TOPIC } from './constants';
+import {
+  REQUEST_TOPICS,
+  REQUEST_TOPICS_SUCCEEDED,
+  REQUEST_TOPICS_FAILED,
+  SELECT_TOPIC,
+  DELETE_TOPIC,
+  DELETE_TOPIC_SUCCEEDED,
+  DELETE_TOPIC_FAILED,
+} from './constants';
 
 export function requestTopics() {
   return {
@@ -30,5 +32,26 @@ export function selectTopic(topic) {
   return {
     type: SELECT_TOPIC,
     topic,
+  };
+}
+
+export function deleteTopic(id) {
+  return {
+    type: DELETE_TOPIC,
+    id,
+  };
+}
+
+export function deleteTopicSucceeded(id) {
+  return {
+    type: DELETE_TOPIC_SUCCEEDED,
+    id,
+  };
+}
+
+export function deleteTopicFailed(message) {
+  return {
+    type: DELETE_TOPIC_FAILED,
+    message,
   };
 }

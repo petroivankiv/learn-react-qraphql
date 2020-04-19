@@ -59,7 +59,7 @@ export default function TopicsTable({ topics, deleteTopic }) {
                   <ArrowForwardIosIcon />
                 </IconButton>
                 <IconButton
-                  onClick={() => deleteTopic({ variables: { id: row._id } })}
+                  onClick={() => deleteTopic(row._id)}
                   className={classes.menuButton}
                   color="inherit"
                   aria-label="menu"
