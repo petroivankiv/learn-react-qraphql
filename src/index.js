@@ -7,25 +7,12 @@ import configureStore, { history } from './store';
 
 import './index.scss';
 import App from './App';
-import { API_URL } from './config';
 import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+import { apolloClient } from './apolloClient';
 import { ApolloProvider } from '@apollo/react-hooks';
-
-const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: API_URL + '/graphql',
-});
-
-const client = new ApolloClient({
-  cache,
-  link,
-});
 
 const store = configureStore();
 
@@ -33,7 +20,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <ApolloProvider client={client}>
+        <ApolloProvider client={apolloClient}>
           <App />
         </ApolloProvider>
       </ConnectedRouter>

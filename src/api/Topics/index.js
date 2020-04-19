@@ -15,7 +15,7 @@ export function getAll() {
 }
 
 export function remove(id) {
-  return axios.delete(`${API_URL}/topics` + '?id' + id);
+  return axios.delete(`${API_URL}/topics?id` + id);
 }
 
 // GraphQl Actions
