@@ -14,4 +14,4 @@ class ContentContainer extends Component {
 
 const mapStateToProps = selectLogin;
 
-export default connect(mapStateToProps, {})(ContentContainer);
+export default connect(mapStateToProps)(ContentContainer);

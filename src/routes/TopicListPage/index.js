@@ -17,31 +17,36 @@ const styles = {
 };
 
 class TopicListPage extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     this.props.requestTopics();
   }
 
-  deleteTopic = (id) => {
+  onDeleteTopic = (id) => {
     this.props.deleteTopic(id);
   };
 
+  gorToDetails = (id) => {
+    this.props.history.push('/content/topic/' + id);
+  };
+
   render() {
+    const { match, topics } = this.props;
+
     return (
       <>
         <div style={styles.container}>
           <h2>Topics</h2>
           <Button variant="contained">
-            <Link to={`${this.props.match.url}/add`}>Add Topic</Link>
+            <Link to={`${match.url}/add`}>Add Topic</Link>
           </Button>
         </div>
 
         <div style={{ flex: 1, padding: '20px' }}>
           <Switch>
-            <Route exact path={this.props.match.path}>
-              <TopicsTable topics={this.props.topics} deleteTopic={this.deleteTopic} />
+            <Route exact path={match.path}>
+              <TopicsTable topics={topics} deleteTopic={this.onDeleteTopic} viewDetails={this.gorToDetails} />
             </Route>
-            <Route path={`${this.props.match.path}/add`}>
+            <Route path={`${match.path}/add`}>
               <h3>Add.</h3>
             </Route>
           </Switch>

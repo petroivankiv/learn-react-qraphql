@@ -8,12 +8,15 @@ import validator from 'email-validator';
 import TextInput from '../../components/TextInput';
 
 import './styles.scss';
+import { Prompt } from 'react-router-dom';
 
 class LoginPage extends React.Component {
-  state = {};
+  state = {
+    value: '',
+  };
 
   login = () => {
-    const email = this.emailField.value();
+    const email = this.emailField.state.value;
 
     if (!validator.validate(email)) {
       this.setState({
@@ -34,28 +37,36 @@ class LoginPage extends React.Component {
     this.props.cancelLogin();
   };
 
+  handleChange = (value) => {
+    this.setState({ value });
+  };
+
   render() {
     return (
-      <div className="login">
-        <div className="heading">Login with your email</div>
+      <>
+        <Prompt when={this.state.value !== ''} message="You will lose your data" />
+        <div className="login">
+          <div className="heading">Login with your email</div>
 
-        <TextInput
-          placeholder="Your email"
-          ref={(f) => {
-            this.emailField = f;
-          }}
-          errorText={this.state.errorText}
-        />
+          <TextInput
+            placeholder="Your email"
+            handleChange={this.handleChange}
+            ref={(f) => {
+              this.emailField = f;
+            }}
+            errorText={this.state.errorText}
+          />
 
-        <div className="actionContainer">
-          <div className="button" onClick={this.cancelLogin}>
-            cancel
-          </div>
-          <div className="button" onClick={this.login}>
-            log in
+          <div className="actionContainer">
+            <div className="button" onClick={this.cancelLogin}>
+              cancel
+            </div>
+            <div className="button" onClick={this.login}>
+              log in
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

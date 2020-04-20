@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 
 import './styles.scss';
 import classNames from 'classnames';
 
 class TextInput extends React.Component {
-  value() {
-    return this.field.value;
-  }
+  state = {
+    value: '',
+  };
+
+  didChange = debounce(() => {
+    this.props.handleChange(this.state.value);
+  }, 300);
+
+  handleChange = (event) => {
+    this.setState({ value: event.target.value }, () => {
+      this.didChange();
+    });
+  };
 
   render() {
     const { errorText } = this.props;
@@ -18,9 +29,8 @@ class TextInput extends React.Component {
         <input
           className={classNames('input', this.props.className, { inputError: errorText })}
           placeholder={this.props.placeholder}
-          ref={(f) => {
-            this.field = f;
-          }}
+          onChange={this.handleChange}
+          value={this.state.value}
           type="text"
         />
 

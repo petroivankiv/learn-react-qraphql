@@ -29,9 +29,7 @@ export const PrivateRoute = ({ component: Component, isLoggedIn, path, ...rest }
 export default ({ isLoggedIn }) => {
   return (
     <Switch>
-      <Route exact path="/">
-        <Redirect to="/content" />
-      </Route>
+      <Redirect exact to="/content" from="/" />
       <PrivateRoute path="/content" component={SideBarContainer} isLoggedIn={isLoggedIn} />
       <Route path="/login" component={LoginPage} />
       <Route path="/welcome" component={Welcome} />

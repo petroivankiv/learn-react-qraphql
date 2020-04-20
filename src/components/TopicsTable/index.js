@@ -28,12 +28,8 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-export default function TopicsTable({ topics, deleteTopic }) {
+export default function TopicsTable({ topics, deleteTopic, viewDetails }) {
   const classes = useStyles();
-
-  const gotToDetails = () => {
-    console.log('details');
-  };
 
   return (
     <TableContainer component={Paper}>
@@ -55,7 +51,12 @@ export default function TopicsTable({ topics, deleteTopic }) {
               <TableCell align="left">{row.description}</TableCell>
               <TableCell align="right">{row.rate}</TableCell>
               <TableCell align="center" style={{ cursor: 'pointer' }}>
-                <IconButton onClick={gotToDetails} className={classes.menuButton} color="inherit" aria-label="menu">
+                <IconButton
+                  onClick={() => viewDetails(row._id)}
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="menu"
+                >
                   <ArrowForwardIosIcon />
                 </IconButton>
                 <IconButton
