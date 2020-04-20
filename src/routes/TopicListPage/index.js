@@ -17,7 +17,7 @@ const styles = {
   },
 };
 
-class TopicListPage extends React.Component {
+export class TopicListPage extends React.Component {
   componentDidMount() {
     this.props.requestTopics();
   }
