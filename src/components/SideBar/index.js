@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -44,5 +45,9 @@ class SideBar extends React.Component {
     );
   }
 }
+
+SideBar.propTypes = {
+  history: PropTypes.object.isRequired,
+};
 
 export default withRouter(SideBar);

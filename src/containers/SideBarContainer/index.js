@@ -20,6 +20,7 @@ function SideBarContainer() {
 
         <div style={{ flex: 1, padding: '10px' }}>
           <TransitionGroup>
+            {/* key should be unique, so it doesnt work yet */}
             <CSSTransition key={path} classNames={'trans'} timeout={500}>
               <Switch>
                 <Redirect exact to={`${path}/home`} from={path} />

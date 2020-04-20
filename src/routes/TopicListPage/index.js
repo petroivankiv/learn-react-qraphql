@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link, Switch, Route, withRouter } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
@@ -55,6 +56,13 @@ class TopicListPage extends React.Component {
     );
   }
 }
+
+TopicListPage.propTypes = {
+  requestTopics: PropTypes.func.isRequired,
+  selectTopic: PropTypes.func.isRequired,
+  deleteTopic: PropTypes.func.isRequired,
+  topics: PropTypes.array.isRequired,
+};
 
 const WithRouter = withRouter(TopicListPage);
 

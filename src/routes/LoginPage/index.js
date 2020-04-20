@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { login, cancelLogin } from './actions';
 import selectLogin from './selectors';
@@ -70,6 +71,11 @@ class LoginPage extends React.Component {
     );
   }
 }
+
+LoginPage.propTypes = {
+  doLogin: PropTypes.func.isRequired,
+  cancelLogin: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = selectLogin;
 

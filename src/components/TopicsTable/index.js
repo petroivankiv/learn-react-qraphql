@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -28,7 +30,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-export default function TopicsTable({ topics, deleteTopic, viewDetails }) {
+function TopicsTable({ topics, deleteTopic, viewDetails }) {
   const classes = useStyles();
 
   return (
@@ -78,3 +80,11 @@ export default function TopicsTable({ topics, deleteTopic, viewDetails }) {
     </TableContainer>
   );
 }
+
+TopicsTable.propTypes = {
+  topics: PropTypes.array.isRequired,
+  deleteTopic: PropTypes.func.isRequired,
+  viewDetails: PropTypes.func.isRequired,
+};
+
+export default TopicsTable;
