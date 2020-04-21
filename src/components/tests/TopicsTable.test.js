@@ -15,8 +15,8 @@ describe('TopicsTable', () => {
         { _id: '1', name: '1', description: '2', rate: '3' },
         { _id: '11', name: '11', description: '21', rate: '31' },
       ],
-      deleteTopic: jest.fn(),
-      viewDetails: jest.fn(),
+      onDeleteTopic: jest.fn(),
+      onViewDetails: jest.fn(),
     };
 
     const wrapper = shallow(<TopicsTable {...props} />);
@@ -31,8 +31,8 @@ describe('TopicsTable', () => {
         { _id: '1', name: '1', description: '2', rate: '3' },
         { _id: '11', name: '11', description: '21', rate: '31' },
       ],
-      deleteTopic: jest.fn(),
-      viewDetails: jest.fn(),
+      onDeleteTopic: jest.fn(),
+      onViewDetails: jest.fn(),
     };
 
     const wrapper = shallow(<TopicsTable {...props} />);
@@ -40,7 +40,7 @@ describe('TopicsTable', () => {
     const viewDetails = wrapper.find(IconButton).first();
     viewDetails.simulate('click');
 
-    expect(props.viewDetails).toHaveBeenCalledWith(props.topics[0]._id);
+    expect(props.onViewDetails).toHaveBeenCalledWith(props.topics[0]._id);
   });
 
   it('should handle deleteTopic', () => {
@@ -49,8 +49,8 @@ describe('TopicsTable', () => {
         { _id: '1', name: '1', description: '2', rate: '3' },
         { _id: '11', name: '11', description: '21', rate: '31' },
       ],
-      deleteTopic: jest.fn(),
-      viewDetails: jest.fn(),
+      onDeleteTopic: jest.fn(),
+      onViewDetails: jest.fn(),
     };
 
     const wrapper = shallow(<TopicsTable {...props} />);
@@ -58,7 +58,7 @@ describe('TopicsTable', () => {
     const deleteTopic = wrapper.find(IconButton).at(1);
     deleteTopic.simulate('click');
 
-    expect(props.deleteTopic).toHaveBeenCalledWith(props.topics[0]._id);
-    expect(props.viewDetails).not.toHaveBeenCalled();
+    expect(props.onDeleteTopic).toHaveBeenCalledWith(props.topics[0]._id);
+    expect(props.onViewDetails).not.toHaveBeenCalled();
   });
 });

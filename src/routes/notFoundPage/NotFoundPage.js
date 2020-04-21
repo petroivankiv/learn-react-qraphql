@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-function NotFound() {
+function NotFoundPage() {
   let location = useLocation();
 
   return (
@@ -28,4 +28,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default NotFoundPage;

@@ -5,7 +5,7 @@ import { requestTopicsSucceeded, requestTopicsFailed, deleteTopicSucceeded, dele
 import { push } from 'react-router-redux';
 import { getAllByGql, removeByGql } from '../../api/Topics';
 
-function* fetchTopics() {
+export function* fetchTopics() {
   try {
     const { data } = yield call(getAllByGql);
     yield put(requestTopicsSucceeded(data.topics));
@@ -14,7 +14,7 @@ function* fetchTopics() {
   }
 }
 
-function* deleteTopicFn(action) {
+export function* deleteTopicFn(action) {
   try {
     const { data } = yield call(removeByGql, action.id);
     yield put(deleteTopicSucceeded(data.DeleteTopic.id));
@@ -23,7 +23,7 @@ function* deleteTopicFn(action) {
   }
 }
 
-function* selectTopic(action) {
+export function* selectTopic(action) {
   yield put(push(`/topics/${action.topic.name}`));
 }
 

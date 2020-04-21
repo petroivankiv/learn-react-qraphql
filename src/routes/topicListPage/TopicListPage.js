@@ -45,7 +45,7 @@ export class TopicListPage extends React.Component {
         <div style={{ flex: 1, padding: '20px' }}>
           <Switch>
             <Route exact path={match.path}>
-              <TopicsTable topics={topics} deleteTopic={this.onDeleteTopic} viewDetails={this.gorToDetails} />
+              <TopicsTable topics={topics} onDeleteTopic={this.onDeleteTopic} onViewDetails={this.gorToDetails} />
             </Route>
             <Route path={`${match.path}/add`}>
               <h3>Add.</h3>
@@ -59,7 +59,7 @@ export class TopicListPage extends React.Component {
 
 TopicListPage.propTypes = {
   requestTopics: PropTypes.func.isRequired,
-  selectTopic: PropTypes.func.isRequired,
+  selectTopic: PropTypes.func,
   deleteTopic: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,
 };

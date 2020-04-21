@@ -2,7 +2,7 @@ import reducer from '../reducer';
 import { fromJS } from 'immutable';
 import * as actions from '../actions';
 
-describe('todos reducer', () => {
+describe('login reducer', () => {
   const initState = fromJS({
     email: 'email@domain.ua',
   });

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '../../config';
-import { GET_TOPICS } from '../../routes/TopicListPage/query';
-import { DELETE_TOPIC } from '../../routes/TopicListPage/mutation';
+import { GET_TOPICS } from '../../routes/topicListPage/query';
+import { DELETE_TOPIC } from '../../routes/topicListPage/mutation';
 
 // REST Actions
 export function create(topic) {

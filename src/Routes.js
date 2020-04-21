@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import SideBarContainer from './containers/SideBarContainer';
-import NotFound from './routes/NotFoundPage';
+import NotFound from './routes/notFoundPage/NotFoundPage';
 import LoginPage from './routes/loginPage/LoginPage';
 import Welcome from './routes/welcome/Welcome';
 

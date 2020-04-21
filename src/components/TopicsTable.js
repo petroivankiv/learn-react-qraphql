@@ -30,7 +30,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-function TopicsTable({ topics, deleteTopic, viewDetails }) {
+function TopicsTable({ topics, onDeleteTopic, onViewDetails }) {
   const classes = useStyles();
 
   return (
@@ -54,7 +54,7 @@ function TopicsTable({ topics, deleteTopic, viewDetails }) {
               <TableCell align="right">{row.rate}</TableCell>
               <TableCell align="center" style={{ cursor: 'pointer' }}>
                 <IconButton
-                  onClick={() => viewDetails(row._id)}
+                  onClick={() => onViewDetails(row._id)}
                   className={classes.menuButton}
                   color="inherit"
                   aria-label="menu"
@@ -62,7 +62,7 @@ function TopicsTable({ topics, deleteTopic, viewDetails }) {
                   <ArrowForwardIosIcon />
                 </IconButton>
                 <IconButton
-                  onClick={() => deleteTopic(row._id)}
+                  onClick={() => onDeleteTopic(row._id)}
                   className={classes.menuButton}
                   color="inherit"
                   aria-label="menu"
@@ -83,8 +83,8 @@ function TopicsTable({ topics, deleteTopic, viewDetails }) {
 
 TopicsTable.propTypes = {
   topics: PropTypes.array.isRequired,
-  deleteTopic: PropTypes.func.isRequired,
-  viewDetails: PropTypes.func.isRequired,
+  onDeleteTopic: PropTypes.func.isRequired,
+  onViewDetails: PropTypes.func.isRequired,
 };
 
 export default TopicsTable;

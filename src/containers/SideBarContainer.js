@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect, useRouteMatch } from 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import HomePage from '../routes/homePage/HomePage';
-import TopicListPage from '../routes/TopicListPage';
-import TopicDetails from '../routes/TopicDetailsPage';
+import TopicListPage from '../routes/topicListPage/TopicListPage';
+import TopicDetails from '../routes/topicDetailsPage/TopicDetailsPage';
 import SideBar from '../components/SideBar';
 
 import './SideBarContainer.scss';
