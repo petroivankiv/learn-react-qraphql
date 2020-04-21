@@ -11,13 +11,13 @@ import TextInput from '../../components/TextInput';
 import './styles.scss';
 import { Prompt } from 'react-router-dom';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
   state = {
     value: '',
   };
 
   login = () => {
-    const email = this.emailField.state.value;
+    const email = this.state.value;
 
     if (!validator.validate(email)) {
       this.setState({
@@ -51,7 +51,7 @@ class LoginPage extends React.Component {
 
           <TextInput
             placeholder="Your email"
-            handleChange={this.handleChange}
+            onChangeInput={this.handleChange}
             ref={(f) => {
               this.emailField = f;
             }}

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
 import welcome from './welcome.jpg';
-import selectLogin from '../LoginPage/selectors';
+import selectLogin from '../loginPage/selectors';
 
 const styles = {
   container: {
@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-class Welcome extends React.Component {
+export class Welcome extends React.Component {
   render() {
     const { email } = this.props;
 
@@ -43,4 +43,4 @@ class Welcome extends React.Component {
 
 const mapStateToProps = selectLogin;
 
-export default connect(mapStateToProps, {})(Welcome);
+export default connect(mapStateToProps)(Welcome);

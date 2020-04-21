@@ -11,7 +11,7 @@ class TextInput extends React.Component {
   };
 
   didChange = debounce(() => {
-    this.props.handleChange(this.state.value);
+    this.props.onChangeInput(this.state.value);
   }, 300);
 
   handleChange = (event) => {
@@ -45,6 +45,6 @@ TextInput.propTypes = {
   errorText: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
+  onChangeInput: PropTypes.func.isRequired,
 };
 export default TextInput;

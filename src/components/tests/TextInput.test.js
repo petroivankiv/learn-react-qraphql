@@ -10,7 +10,7 @@ describe('TextInput', () => {
     errorText: 'Text',
     placeholder: 'Placeholder',
     className: 'className',
-    handleChange: () => {},
+    onChangeInput: () => {},
   };
 
   it('renders correctly', () => {

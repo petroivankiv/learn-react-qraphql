@@ -11,8 +11,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import { logout } from '../routes/LoginPage/actions';
-import selectLogin from '../routes/LoginPage/selectors';
+import { logout } from '../routes/loginPage/actions';
+import selectLogin from '../routes/loginPage/selectors';
 
 const styles = () => ({
   root: {

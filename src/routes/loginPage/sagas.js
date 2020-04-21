@@ -1,15 +1,21 @@
 import { LOGIN, CANCEL_LOGIN, LOGOUT } from './constants';
 import { put, all, takeEvery, call } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+import { loginSuccess, loginFailure } from './actions';
 import { login } from '../../api/Login';
 
-function* handleDone() {
+export function* handleDone() {
   yield put(push('/welcome'));
 }
 
-function* handleLogin(action) {
-  yield call(login, action.email);
-  yield put(push('/welcome'));
+export function* handleLogin(action) {
+  try {
+    yield call(login, action.email);
+    yield put(loginSuccess(action.email));
+    yield put(push('/welcome'));
+  } catch (e) {
+    yield put(loginFailure());
+  }
 }
 
 export function* doLogoutSaga() {
