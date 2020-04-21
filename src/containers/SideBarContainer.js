@@ -5,7 +5,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import HomePage from '../routes/homePage/HomePage';
 import TopicListPage from '../routes/topicListPage/TopicListPage';
-import TopicDetails from '../routes/topicDetailsPage/TopicDetailsPage';
 import SideBar from '../components/SideBar';
 
 import './SideBarContainer.scss';
@@ -26,7 +25,6 @@ function SideBarContainer() {
                 <Redirect exact to={`${path}/home`} from={path} />
                 <Route path={`${path}/home`} component={HomePage} />
                 <Route path={`${path}/topics`} component={TopicListPage} />
-                <Route path={`${path}/topic/:topicId`} component={TopicDetails} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>

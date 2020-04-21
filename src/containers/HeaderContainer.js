@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
@@ -26,7 +26,7 @@ const styles = () => ({
   },
 });
 
-export class HeaderContainer extends Component {
+export class HeaderContainer extends PureComponent {
   userHasAuthenticated = ({ isLoggedIn }) => {
     this.setState({ isLoggedIn });
   };

@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { TopicListPage } from '../TopicListPage';
 import TopicsTable from '../../../components/TopicsTable';
+import Layout from '../../../components/Layout';
 
 import { Link } from 'react-router-dom';
 
@@ -20,10 +21,7 @@ describe('TopicListPage', () => {
     };
 
     const wrapper = shallow(<TopicListPage {...props} />);
-
-    expect(wrapper.find('h2').getElement().props.children).toBe('Topics');
-    expect(wrapper.find(Link).getElement().props.children).toBe('Add Topic');
-    expect(wrapper.find(Link).getElement().props.to).toBe(props.match.url + '/add');
+    expect(wrapper.find(Layout).getElement()).toBeTruthy();
   });
 
   it('should handle request', () => {
@@ -69,6 +67,7 @@ describe('TopicListPage', () => {
     const props = {
       match: {
         url: 'url',
+        path: '/content',
       },
       topics: [],
       history: {
@@ -82,6 +81,27 @@ describe('TopicListPage', () => {
     const tableEl = wrapper.find(TopicsTable);
     tableEl.simulate('viewDetails', 'id');
 
-    expect(props.history.push).toHaveBeenCalledWith('/content/topic/id');
+    expect(props.history.push).toHaveBeenCalledWith(props.match.path + '/view/id');
+  });
+
+  it('should handle view details', () => {
+    const props = {
+      match: {
+        url: 'url',
+        path: '/content',
+      },
+      topics: [],
+      history: {
+        push: jest.fn(),
+      },
+      requestTopics: jest.fn(),
+      deleteTopic: jest.fn(),
+    };
+
+    const wrapper = shallow(<TopicListPage {...props} />);
+    const tableEl = wrapper.find(TopicsTable);
+    tableEl.simulate('addTopic');
+
+    expect(props.history.push).toHaveBeenCalledWith(props.match.path + '/add');
   });
 });

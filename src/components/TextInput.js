@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce';
 import './TextInput.scss';
 import classNames from 'classnames';
 
-class TextInput extends React.Component {
+class TextInput extends React.PureComponent {
   state = {
     value: '',
   };

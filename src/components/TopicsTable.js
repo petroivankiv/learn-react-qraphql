@@ -14,6 +14,8 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
 
+import TopicsHeader from './SectionHeader';
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -30,54 +32,57 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-function TopicsTable({ topics, onDeleteTopic, onViewDetails }) {
+function TopicsTable({ topics, onDeleteTopic, onViewDetails, onAddTopic }) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell align="left">Description</StyledTableCell>
-            <StyledTableCell align="right">Rate</StyledTableCell>
-            <StyledTableCell align="center">Actions</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {topics.map((row) => (
-            <TableRow key={row._id}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="left">{row.description}</TableCell>
-              <TableCell align="right">{row.rate}</TableCell>
-              <TableCell align="center" style={{ cursor: 'pointer' }}>
-                <IconButton
-                  onClick={() => onViewDetails(row._id)}
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                >
-                  <ArrowForwardIosIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => onDeleteTopic(row._id)}
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                >
-                  <DeleteOutlineIcon />
-                </IconButton>
-                <IconButton className={classes.menuButton} color="inherit" aria-label="menu">
-                  <EditIcon />
-                </IconButton>
-              </TableCell>
+    <>
+      <TopicsHeader onClickHandler={onAddTopic} title="Topics" buttonTitle="Add Topic" />
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell align="left">Description</StyledTableCell>
+              <StyledTableCell align="right">Rate</StyledTableCell>
+              <StyledTableCell align="center">Actions</StyledTableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {topics.map((row) => (
+              <TableRow key={row._id}>
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="left">{row.description}</TableCell>
+                <TableCell align="right">{row.rate}</TableCell>
+                <TableCell align="center" style={{ cursor: 'pointer' }}>
+                  <IconButton
+                    onClick={() => onViewDetails(row._id)}
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="menu"
+                  >
+                    <ArrowForwardIosIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => onDeleteTopic(row._id)}
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="menu"
+                  >
+                    <DeleteOutlineIcon />
+                  </IconButton>
+                  <IconButton className={classes.menuButton} color="inherit" aria-label="menu">
+                    <EditIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 

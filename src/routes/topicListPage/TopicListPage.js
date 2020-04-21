@@ -1,23 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link, Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
-import Button from '@material-ui/core/Button';
 import selectTopicList from './selectors';
 import { requestTopics, selectTopic, deleteTopic } from './actions';
 
+import Layout from '../../components/Layout';
 import TopicsTable from '../../components/TopicsTable';
+import AddTopicForm from '../../components/AddTopicForm';
+import TopicDetails from '../../containers/topicDetailsContainer/TopicDetailsContainer';
 
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '20px',
-  },
-};
-
-export class TopicListPage extends React.Component {
+export class TopicListPage extends React.PureComponent {
   componentDidMount() {
     this.props.requestTopics();
   }
@@ -26,33 +20,32 @@ export class TopicListPage extends React.Component {
     this.props.deleteTopic(id);
   };
 
-  gorToDetails = (id) => {
-    this.props.history.push('/content/topic/' + id);
+  gorToDetails = (link) => {
+    this.props.history.push(link);
+  };
+
+  addTopic = (link) => {
+    this.props.history.push(link);
   };
 
   render() {
     const { match, topics } = this.props;
 
     return (
-      <>
-        <div style={styles.container}>
-          <h2>Topics</h2>
-          <Button variant="contained">
-            <Link to={`${match.url}/add`}>Add Topic</Link>
-          </Button>
-        </div>
-
-        <div style={{ flex: 1, padding: '20px' }}>
-          <Switch>
-            <Route exact path={match.path}>
-              <TopicsTable topics={topics} onDeleteTopic={this.onDeleteTopic} onViewDetails={this.gorToDetails} />
-            </Route>
-            <Route path={`${match.path}/add`}>
-              <h3>Add.</h3>
-            </Route>
-          </Switch>
-        </div>
-      </>
+      <Layout>
+        <Switch>
+          <Route exact path={match.path}>
+            <TopicsTable
+              topics={topics}
+              onAddTopic={() => this.addTopic(`${match.path}/add`)}
+              onDeleteTopic={this.onDeleteTopic}
+              onViewDetails={(id) => this.gorToDetails(`${match.path}/view/` + id)}
+            />
+          </Route>
+          <Route path={`${match.path}/view/:topicId`} component={TopicDetails} />
+          <Route path={`${match.path}/add`} component={AddTopicForm} />
+        </Switch>
+      </Layout>
     );
   }
 }

@@ -11,7 +11,7 @@ import TextInput from '../../components/TextInput';
 import './styles.scss';
 import { Prompt } from 'react-router-dom';
 
-export class LoginPage extends React.Component {
+export class LoginPage extends React.PureComponent {
   state = {
     value: '',
   };

@@ -13,5 +13,9 @@ module.exports = (model) => {
     remove({ id }) {
       return model.remove(id).then(() => ({ id }));
     },
+
+    getOne(id) {
+      return model.getOne(id);
+    },
   };
 };

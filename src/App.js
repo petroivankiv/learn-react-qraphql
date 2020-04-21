@@ -4,7 +4,7 @@ import './App.scss';
 import Header from './containers/HeaderContainer';
 import Content from './containers/ContentContainer';
 
-export class App extends React.Component {
+export class App extends React.PureComponent {
   render() {
     return (
       <>

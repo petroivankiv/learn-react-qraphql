@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-export class Welcome extends React.Component {
+export class Welcome extends React.PureComponent {
   render() {
     const { email } = this.props;
 

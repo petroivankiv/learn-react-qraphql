@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
+import { useHistory } from 'react-router-dom';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,13 +12,9 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import GradeIcon from '@material-ui/icons/Grade';
 import SubtitlesIcon from '@material-ui/icons/Subtitles';
 
-function getDetails() {
-  return {
-    name: 'NodeJs',
-    description: 'Description',
-    rate: 10,
-  };
-}
+import SectionHeader from '../../components/SectionHeader';
+
+import { GET_TOPIC } from './query';
 
 function getIconByKey(key) {
   switch (key) {
@@ -41,22 +39,37 @@ function getElement(key, value) {
 }
 
 export default function TopicDetailsPage() {
+  const history = useHistory();
   const { topicId } = useParams();
-  const details = getDetails();
+  const { loading, data } = useQuery(GET_TOPIC, {
+    variables: {
+      id: topicId,
+    },
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const goBack = () => {
+    history.goBack();
+  };
+
+  const topic = data ? data.topic : {};
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Topic Details - {topicId}</h2>
+    <>
+      <SectionHeader onClickHandler={goBack} title="Topic Details" buttonTitle="Back" />
 
       <Grid item xs={12} md={6}>
         <div>
           <List>
-            {getElement('Name', details.name)}
-            {getElement('Description', details.description)}
-            {getElement('Rate', details.rate)}
+            {getElement('Name', topic.name)}
+            {getElement('Description', topic.description)}
+            {getElement('Rate', topic.rate)}
           </List>
         </div>
       </Grid>
-    </div>
+    </>
   );
 }

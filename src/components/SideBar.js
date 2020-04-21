@@ -9,7 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Home from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 
-class SideBar extends React.Component {
+class SideBar extends React.PureComponent {
   goToHome = () => {
     this.props.history.push('/content/home');
   };
