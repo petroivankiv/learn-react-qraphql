@@ -10,12 +10,18 @@ import Home from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 
 class SideBar extends React.PureComponent {
+  state = {
+    activeRoute: 'home',
+  };
+
   goToHome = () => {
     this.props.history.push('/content/home');
+    this.setState({ activeRoute: 'home' });
   };
 
   goTotopics = () => {
     this.props.history.push('/content/topics');
+    this.setState({ activeRoute: 'topic' });
   };
 
   render() {
@@ -28,13 +34,13 @@ class SideBar extends React.PureComponent {
         }}
       >
         <List component="nav" aria-label="main mailbox folders">
-          <ListItem button>
+          <ListItem button selected={this.state.activeRoute === 'home'}>
             <ListItemIcon>
               <Home color="primary" />
             </ListItemIcon>
             <ListItemText primary="Home" onClick={this.goToHome} />
           </ListItem>
-          <ListItem button>
+          <ListItem button selected={this.state.activeRoute === 'topic'}>
             <ListItemIcon>
               <ListIcon color="primary" />
             </ListItemIcon>
