@@ -8,7 +8,7 @@ import { requestTopics, selectTopic, deleteTopic } from './actions';
 
 import Layout from '../../components/Layout';
 import TopicsTable from '../../components/TopicsTable';
-import AddTopicForm from '../../components/AddTopicForm';
+import AddTopicForm from '../../containers/AddTopicForm';
 import TopicDetails from '../../containers/topicDetailsContainer/TopicDetailsContainer';
 
 export class TopicListPage extends React.PureComponent {
