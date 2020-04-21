@@ -1,10 +1,7 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import NotFoundPage from './NotFoundPage';
 import { Link } from 'react-router-dom';
-
-configure({ adapter: new Adapter() });
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts

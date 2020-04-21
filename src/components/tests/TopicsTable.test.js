@@ -1,12 +1,9 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import TopicsTable from '../TopicsTable';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
-
-configure({ adapter: new Adapter() });
 
 describe('TopicsTable', () => {
   it('renders correctly', () => {

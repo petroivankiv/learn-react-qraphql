@@ -4,8 +4,8 @@ import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 
 import createRootReducer from './reducers';
-import loginSagas from './routes/LoginPage/sagas';
-import topicsSagas from './routes/TopicListPage/sagas';
+import loginSagas from './routes/loginPage/sagas';
+import topicsSagas from './routes/topicListPage/sagas';
 
 export const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();

@@ -1,12 +1,9 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import { TopicListPage } from '../TopicListPage';
 import TopicsTable from '../../../components/TopicsTable';
 
 import { Link } from 'react-router-dom';
-
-configure({ adapter: new Adapter() });
 
 describe('TopicListPage', () => {
   it('renders correctly', () => {

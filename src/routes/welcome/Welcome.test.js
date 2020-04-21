@@ -1,12 +1,9 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import { Welcome } from './Welcome';
 
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-
-configure({ adapter: new Adapter() });
 
 describe('Welcome', () => {
   it('renders correctly', () => {

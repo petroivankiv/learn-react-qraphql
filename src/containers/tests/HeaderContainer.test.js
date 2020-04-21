@@ -1,13 +1,10 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import { HeaderContainer } from '../HeaderContainer';
 
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
-configure({ adapter: new Adapter() });
 
 describe('HeaderContainer', () => {
   it('renders correctly', () => {

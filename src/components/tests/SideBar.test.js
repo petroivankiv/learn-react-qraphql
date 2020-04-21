@@ -1,14 +1,11 @@
 import React from 'react';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
 import SideBar from '../SideBar';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
-configure({ adapter: new Adapter() });
 
 describe('SideBar', () => {
   const props = {
