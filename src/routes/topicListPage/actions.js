@@ -6,6 +6,7 @@ import {
   DELETE_TOPIC,
   DELETE_TOPIC_SUCCEEDED,
   DELETE_TOPIC_FAILED,
+  ADD_TOPIC_SUCCEEDED,
 } from './constants';
 
 export function requestTopics() {
@@ -18,6 +19,13 @@ export function requestTopicsSucceeded(topics) {
   return {
     type: REQUEST_TOPICS_SUCCEEDED,
     topics,
+  };
+}
+
+export function addTopicSucceeded(topic) {
+  return {
+    type: ADD_TOPIC_SUCCEEDED,
+    topic,
   };
 }
 

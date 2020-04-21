@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { REQUEST_TOPICS_SUCCEEDED, SELECT_TOPIC, DELETE_TOPIC_SUCCEEDED } from './constants';
+import { REQUEST_TOPICS_SUCCEEDED, SELECT_TOPIC, DELETE_TOPIC_SUCCEEDED, ADD_TOPIC_SUCCEEDED } from './constants';
 
 const initialState = fromJS({
   topics: [],
@@ -16,6 +16,8 @@ function topicListReducer(state = initialState, action) {
         'topics',
         state.get('topics').filter((t) => t._id !== action.id)
       );
+    case ADD_TOPIC_SUCCEEDED:
+      return state.set('topics', [...state.get('topics'), action.topic]);
     default:
       return state;
   }

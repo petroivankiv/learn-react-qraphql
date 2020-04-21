@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useMutation } from '@apollo/react-hooks';
+import { useDispatch } from 'react-redux';
 
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
@@ -8,15 +10,34 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 
-import SectionHeader from '../components/SectionHeader';
-import TextInput from '../components/TextInput';
+import SectionHeader from '../../components/SectionHeader';
+import TextInput from '../../components/TextInput';
 
-function AddTopicForm() {
+import { ADD_TOPIC } from '../../routes/topicListPage/mutation';
+import { addTopicSucceeded } from '../../routes/topicListPage/actions';
+
+function AddTopicFormContainer() {
+  const dispatch = useDispatch();
+  const [addTopic] = useMutation(ADD_TOPIC, { onCompleted });
   const [state, setState] = useState({
     name: '',
     description: '',
     rate: 0,
   });
+
+  function onCompleted(data) {
+    dispatch(addTopicSucceeded(data.AddTopic));
+  }
+
+  const saveTopic = () => {
+    const { name, description, rate } = state;
+
+    if (!name || !description || !rate) {
+      return;
+    }
+
+    addTopic({ variables: { input: { name, description, rate } } });
+  };
 
   const history = useHistory();
 
@@ -25,17 +46,15 @@ function AddTopicForm() {
   };
 
   const changeName = (value) => {
-    setState({ name: value });
+    setState({ ...state, name: value });
   };
 
   const changeDesc = (value) => {
-    setState({ description: value });
+    setState({ ...state, description: value });
   };
 
   const changeRate = (value) => {
-    setState({
-      rate: value,
-    });
+    setState({ ...state, rate: value });
   };
 
   return (
@@ -50,7 +69,7 @@ function AddTopicForm() {
           Description
         </Typography>
         <textarea
-          style={{ width: '100%' }}
+          style={{ width: '100%', height: '150px' }}
           value={state.description}
           onChange={(event) => changeDesc(event.target.value)}
         />
@@ -69,11 +88,18 @@ function AddTopicForm() {
         </Box>
       </div>
 
-      <Button style={{ marginTop: '20px' }} variant="contained" color="primary" size="large" startIcon={<SaveIcon />}>
+      <Button
+        onClick={saveTopic}
+        style={{ marginTop: '20px' }}
+        variant="contained"
+        color="primary"
+        size="large"
+        startIcon={<SaveIcon />}
+      >
         Save
       </Button>
     </>
   );
 }
 
-export default AddTopicForm;
+export default AddTopicFormContainer;
